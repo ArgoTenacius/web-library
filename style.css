@@ -5,24 +5,30 @@
 
 body{
     height: 100vh;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 header{
-    height: 20%;
+    height: 15%;
+    padding-inline: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(243, 243, 243);
 }
 
 .book-area{
-    height: 70%;
+    height: 75%;
     display: flex;
-    margin-inline: 2%;
+    margin-inline: 3%;
     align-items: center;
 }
 
 .book{
     height: 30vw;
     width: 22vw;
-    -webkit-box-shadow: 0px 0px  10px 1px #000000; 
-    box-shadow: 0px 0px  20px 1px #000000;
+    -webkit-box-shadow: 0px 0px  10px 1px #00000091; 
+    box-shadow: 0px 0px  20px 1px #00000091;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -31,9 +37,15 @@ header{
 
 .title{
     font-size: 36px;
+    font-weight: 500;
 }
 
 .author{
+    opacity: 0.8;
+}
+
+.pages{
+    font-weight: 400;
     opacity: 0.8;
 }
 
