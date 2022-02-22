@@ -27,6 +27,7 @@ header{
     display: flex;
     align-items: center;
     padding-inline: 3%;
+    gap: 20px;
 }
 
 .book{
@@ -86,6 +87,34 @@ header{
 
 .add-button img{
     cursor: pointer;
+}
+
+.newbook{
+    height: 200px;
+    width: 220px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 1px rgba(77, 77, 77, 0.61);
+    border-radius: 20px;
+}
+
+.newbook-config{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    font-size: 22px;
+}
+
+.newbook-config input{
+    font-size: 28px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(56, 56, 56, 0.733);
+}
+
+.readed input{
+    height: 24px;
 }
 
 footer{
