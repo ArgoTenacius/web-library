@@ -22,13 +22,16 @@ function newBook(){
     const __pages_input = document.createElement("input")
     const __readed = document.createElement("div")
     const __readed_checkbox = document.createElement("input")
+    const __submit = document.createElement("button")
 
     __newBook.className = "newbook"
     __newBook_config.className = "newbook-config"
+    __submit.className="book-button submit"
 
     __title_input.placeholder = "Title"
     __author_input.placeholder = "Author"
     __pages_input.placeholder = "Pages:"
+    __submit.innerText = "Submit"
 
     __readed.className = "readed"
     __readed.innerText = "Already readed ?"
@@ -36,7 +39,7 @@ function newBook(){
     __readed.appendChild(__readed_checkbox)
 
     __newBook.appendChild(__newBook_config)
-    __newBook_config.append(__title_input, __author_input, __pages_input, __readed)
+    __newBook_config.append(__title_input, __author_input, __pages_input, __readed, __submit)
     book_area.appendChild(__newBook)
 }
 
