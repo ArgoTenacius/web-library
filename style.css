@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 :root{
@@ -10,7 +11,6 @@
 
 body{
     height: 100vh;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 header{
@@ -49,15 +49,24 @@ header{
     gap: 10px;
 }
 
+.readed{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 22px;
+}
+
+.readed input{
+    width: 24px;
+    height: 24px;
+}
+
 .info-config{
     width: 100%;
     font-size: 20px;
     border: none;
-    border-bottom: 1px solid rgba(49, 49, 49, 0.562);
+    border-bottom: 1px solid #3131318f;
     background-color: transparent;
-}
-
-.info-config:active{
 }
 
 .title{
@@ -77,4 +86,14 @@ header{
 footer{
     height: 10%;
     background-color: transparent;
+}
+
+.submit-button{
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 32px;
+    background-color: rgba(95, 247, 95, 0.685);
 }
