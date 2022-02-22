@@ -103,18 +103,23 @@ header{
     align-items: center;
     gap: 5px;
     padding: 10px;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .newbook-config input{
-    font-size: 28px;
+    font-size: 20px;
     width: 100%;
     border: none;
     border-bottom: 1px solid rgba(56, 56, 56, 0.733);
 }
 
 .readed input{
-    height: 24px;
+    height: 20px;
+}
+
+.submit:hover{
+    transition: 0.1s ease-in-out;
+    background: var(--green-color);
 }
 
 footer{
