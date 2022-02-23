@@ -36,9 +36,6 @@ header{
     background-color: white;
     box-shadow: 0px 0px 5px 1px rgba(77, 77, 77, 0.61);
     border-radius: 20px;
-}
-
-.book-content{
     display: flex;
     flex-direction: column;
     align-items: center;
