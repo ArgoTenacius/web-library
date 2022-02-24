@@ -10,24 +10,50 @@
     --red-color: rgba(233, 83, 83, 0.849);
 }
 
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(24, 24, 24);
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: black;
+}
+
 body{
     height: 100vh;
+    overflow-x: hidden;
 }
 
 header{
     height: 10%;
     display: flex;
     align-items: center;
-    padding-inline: 1%
+    padding-inline: 1%;
+    background-color: white;
+    width: 100%;
 }
 
 .book-area{
-    height: 80%;
+    padding: 1%;
+    min-height: 80%;
     background-color: var(--bookarea-color);
-    display: flex;
-    align-items: center;
-    padding-inline: 3%;
-    gap: 20px;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 20px 20px; 
+    grid-template-areas: 
+      ". . . . ."; 
+    align-content: center; 
+    justify-items: center; 
+    overflow-y: visible;
 }
 
 .book{
@@ -127,4 +153,9 @@ header{
 footer{
     height: 10%;
     background-color: var(--bookarea-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
 }

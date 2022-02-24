@@ -28,6 +28,7 @@ class Library{
 const library = new Library()
 //#endregion
 
+//#region createNewBook (config)
 const createNewBook = () =>{
     new_book = document.createElement("form")
     title_input = document.createElement("input")
@@ -55,8 +56,7 @@ const createNewBook = () =>{
     readed_div.append(readed_check)
     book_area.append(new_book)
 }
-
-createNewBook()
+//#endregion
 
 //#region  createBook
 const createBook = (book) => {
@@ -115,3 +115,9 @@ const toggleRead = (e) => {
 //library.addBook(newBook)
 
 //updateBookList()
+
+//#region copyrght
+const copyright = document.getElementById("copyright-date")
+const date = new Date()
+copyright.textContent = date.getFullYear()
+//#endregion
