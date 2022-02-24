@@ -10,14 +10,30 @@ class Book{
     }
 }
 
+class ConfigBook{
+    constructor(title = "", author = "", pages = "", readed = false){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.readed = readed
+    }
+}
+
 class Library{
     constructor(){
         this.books = []
+        this.configBooks = []
     }
 
     addBook(newBook) { 
         this.books.push(newBook) 
         console.log(this.books) 
+    }
+
+    addConfigBook(newConfigBook){
+        this.configBooks.push(newConfigBook)
+        console.log(this.configBooks)
+        updateBookList()
     }
 
     getBook(title){
@@ -93,11 +109,33 @@ const createBook = (book) => {
 }
 //#endregion
 
+//#region createAddBtn
+const createAddBtn = () => {
+    const add_button = document.createElement("div")
+    const icon = document.createElement("img")
+
+    add_button.className = "add-button"
+    add_button.onclick = () =>{
+        const newConfigBook = new ConfigBook()
+        library.addConfigBook(newConfigBook)
+    }
+
+    icon.src = "https://img.icons8.com/ios/120/000000/plus--v1.png"
+
+    add_button.appendChild(icon)
+    book_area.appendChild(add_button)
+}
+//#endregion
+
 const updateBookList = () => {
-    book_area.innerHTML = ""
+    book_area.innerHTML = ''
     for (let book of library.books){
         createBook(book)
     }
+    for (let configBook of library.configBooks){
+        createNewBook(configBook)
+    }
+    createAddBtn()
 }
 
 const toggleRead = (e) => {
@@ -115,6 +153,8 @@ const toggleRead = (e) => {
 //library.addBook(newBook)
 
 //updateBookList()
+
+createAddBtn()
 
 //#region copyrght
 const copyright = document.getElementById("copyright-date")
