@@ -1,5 +1,6 @@
 const book_area = document.getElementById("book_area")
 
+//#region constructors
 class Book{
     constructor(title, author, pages, readed){
         this.title = title
@@ -25,7 +26,39 @@ class Library{
 }
 
 const library = new Library()
+//#endregion
 
+const createNewBook = () =>{
+    new_book = document.createElement("form")
+    title_input = document.createElement("input")
+    author_input = document.createElement("input")
+    pages_input = document.createElement("input")
+    readed_div = document.createElement("div")
+    readed_check = document.createElement("input")
+    submit_btn = document.createElement("button")
+
+    new_book.className = "newbook"
+    readed_div.className = "readed"
+    submit_btn.className = "book-button submit"
+
+    title_input.placeholder = "Title"
+    author_input.placeholder = "Author"
+    pages_input.placeholder = "Amount of pages"
+
+    readed_div.textContent = "Already readed ?"
+    submit_btn.textContent = "Submit"
+
+    submit_btn.type = "button"
+    readed_check.type = "checkbox"
+
+    new_book.append(title_input, author_input, pages_input, readed_div, submit_btn)
+    readed_div.append(readed_check)
+    book_area.append(new_book)
+}
+
+createNewBook()
+
+//#region  createBook
 const createBook = (book) => {
     const bookCard = document.createElement("div")
     const title = document.createElement("h1")
@@ -58,8 +91,7 @@ const createBook = (book) => {
     bookCard.append(title, author, pages, readBtn, removeBtn)
     book_area.appendChild(bookCard)
 }
-
-const newBook = new Book("Percy Jackson", "Rick Riordan", "264", false)
+//#endregion
 
 const updateBookList = () => {
     book_area.innerHTML = ""
@@ -79,6 +111,7 @@ const toggleRead = (e) => {
     updateBookList()
 }
 
-library.addBook(newBook)
+//const newBook = new Book("Percy Jackson", "Rick Riordan", "264", false)
+//library.addBook(newBook)
 
-updateBookList()
+//updateBookList()
