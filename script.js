@@ -18,12 +18,15 @@ class Library{
         this.books.push(newBook) 
         console.log(this.books) 
     }
+
+    getBook(title){
+        return this.books.find((book) => book.title === title)
+    }
 }
 
 const library = new Library()
 
 const createBook = (book) => {
-    console.log("Test")
     const bookCard = document.createElement("div")
     const title = document.createElement("h1")
     const author = document.createElement("h3")
@@ -36,6 +39,8 @@ const createBook = (book) => {
     author.className = "book-author"
     pages.className = "book-author"
     removeBtn.className = "book-button remove"
+
+    readBtn.onclick = toggleRead
 
     title.textContent = book.title
     author.textContent = book.author
@@ -57,10 +62,23 @@ const createBook = (book) => {
 const newBook = new Book("Percy Jackson", "Rick Riordan", "264", false)
 
 const updateBookList = () => {
+    book_area.innerHTML = ""
     for (let book of library.books){
         createBook(book)
     }
 }
+
+const toggleRead = (e) => {
+    console.log(e)
+    const title = e.target.parentNode.firstChild.innerHTML
+    
+    const book = library.getBook(title)
+
+    if(book.readed == false) { book.readed = true }
+    else{ book.readed = false}
+    updateBookList()
+}
+
 library.addBook(newBook)
 
 updateBookList()
