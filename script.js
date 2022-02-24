@@ -22,11 +22,8 @@ class Library{
 
 const library = new Library()
 
-const newBook = new Book("Percy Jackson", "Rick Riordan", "264", false)
-
-library.addBook(newBook)
-
-createBook = (book) => {
+const createBook = (book) => {
+    console.log("Test")
     const bookCard = document.createElement("div")
     const title = document.createElement("h1")
     const author = document.createElement("h3")
@@ -38,14 +35,32 @@ createBook = (book) => {
     title.className = "book-title"
     author.className = "book-author"
     pages.className = "book-author"
-    readBtn.classList = "book-button read"
-    removeBtn.classList = "book-button remove"
+    removeBtn.className = "book-button remove"
 
     title.textContent = book.title
     author.textContent = book.author
     pages.textContent = book.pages
     removeBtn.textContent = "remove"
 
+    if(book.readed){
+        readBtn.textContent = "readed"
+        readBtn.className = "book-button read"
+    }else{
+        readBtn.textContent = "not readed"
+        readBtn.className = "book-button not-read"
+    }
+
     bookCard.append(title, author, pages, readBtn, removeBtn)
-    book_area.appendChild(book)
+    book_area.appendChild(bookCard)
 }
+
+const newBook = new Book("Percy Jackson", "Rick Riordan", "264", false)
+
+const updateBookList = () => {
+    for (let book of library.books){
+        createBook(book)
+    }
+}
+library.addBook(newBook)
+
+updateBookList()
