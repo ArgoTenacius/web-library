@@ -9,42 +9,39 @@
 </head>
 <body>
     <header>
-        <h1>Library</h1>
-        <div class="copyright">
-            Copyright © <span id="copyright-date"></span> ArgoTenacius
-            <a href="https://github.com/ArgoTenacius" target="_blank">
-                <img src="https://img.icons8.com/ios-glyphs/42/000000/github.png"/>
-            </a>
-        </div>
+        <h1 class="title">Library</h1>
+        <a href="https://github.com/ArgoTenacius" target="_blank">
+            <img src="https://img.icons8.com/ios-glyphs/42/000000/github.png"/>
+        </a>
     </header>
-    <section class="book-area" id="book_area">
-        <!--
-        <div class="book">
-            <h1 class="book-title">Title</h1>
-            <h3 class="book-author">Author</h3>
-            <h4 class="book-pages">pages:</h4>
-            <button class="book-button read" id="read_button" onclick="bookComplete()">Finished</button>
-            <button class="book-button remove">remove</button>
-        </div>
-        -->
-        <!--
-        <div class="add-button" onclick="createNewBook()">
-            <img src="https://img.icons8.com/ios/120/000000/plus--v1.png"/>
-        </div>
-        -->
-        
-        <!--
-        <form class="newbook">
-            <input type="text" placeholder="Title" id="title" value="Percy Jackson" required>
-            <input type="text" placeholder="Author" id="author" value="Rick Riordan" required>
-            <input type="number" placeholder="pages" id="pages" value="264" required>
-            <div class="readed">
-                Already readed ? <input type="checkbox" id="readed_checkbox">
+
+    <main>
+        <section class="book-card box-shadow">
+            <form class="book-config">
+                <div>
+                    <input type="text" placeholder="title">
+                    <input type="text" placeholder="author">
+                    <input type="number" placeholder="pages">
+                    <label for="read">Already readed it ? <input type="checkbox" value="read"></label>
+                </div>
+                <div class="book-submit">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </section>
+        <section class="book-card box-shadow">
+            <div class="book-content">
+                <div>
+                    <h1>Percy Jackson</h1>
+                    <h4>Rick Riordan</h4>
+                    <h5>pages: 240</h5>
+                </div>
+                <div>
+                    <button type="button" class="book-readed">Readed</button>
+                    <button type="button" class="book-remove">Remove</button>
+                </div>
             </div>
-            <input class="book-button submit" type="submit">
-        </form>
-        -->
-    </section>
-    <script src="script.js"></script>
+        </section>
+    </main>
 </body>
 </html>
