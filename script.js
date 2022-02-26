@@ -28,6 +28,7 @@ class Library{
     addBook(newBook) { 
         this.books.push(newBook) 
         console.log(this.books) 
+        updateBookList()
     }
 
     addConfigBook(newConfigBook){
@@ -62,15 +63,49 @@ const createNewBook = () =>{
     author_input.placeholder = "Author"
     pages_input.placeholder = "Amount of pages"
 
+    title_input.required = true
+    author_input.required = true
+    pages_input.required = true
+
     readed_div.textContent = "Already readed ?"
     submit_btn.textContent = "Submit"
 
-    submit_btn.type = "button"
+    title_input.type = "text"
+    author_input.type = "text"
+    pages_input.type = "number"
+    submit_btn.type = "submit"
     readed_check.type = "checkbox"
+
+    submit_btn.onclick = () => { 
+        const required_array = [title_input.value, author_input.value, pages_input.value]
+        let complete = true
+        for(var i = 0; i < 3; i++){
+            if(checkRequired(required_array[i]) == false ) { complete = false }
+        }
+        
+        if(complete) { library.addBook(getInputValues()) } 
+    }
+    
 
     new_book.append(title_input, author_input, pages_input, readed_div, submit_btn)
     readed_div.append(readed_check)
     book_area.append(new_book)
+}
+//#endregion
+
+const checkRequired = (value) => {
+    if(value === ""){
+        return false
+    }
+}
+
+//#region getInputValues
+const getInputValues = () =>{
+    const title = title_input.value
+    const author = author_input.value
+    const pages = pages_input.value
+    const readed = readed_check.checked
+    return new Book(title, author, pages, readed)
 }
 //#endregion
 
