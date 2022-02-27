@@ -18,6 +18,15 @@ class Library{
         this.bookList.push(newBook)
     }
 }
+const library = new Library()
+
+
+const submitBook = (title, author, pages, readed) => {
+    const newBook = new Book(title, author, pages, readed)
+    library.addBook(newBook)
+    console.log(library.bookList)
+}
+
 
 //#region CreateBookConfig
 const CreateBookConfig = (card) =>{
@@ -37,9 +46,34 @@ const CreateBookConfig = (card) =>{
     titleInput.type = "text"
     authorInput.type = "text"
     pagesInput.type = "number"
+
+    titleInput.required = true
+    authorInput.required = true
+    pagesInput.required = true
+    
     readedInput.type = "checkbox"
     submitInput.type = "submit"
 
+    submitInput.onclick = () => {
+        const requiredArray = [titleInput.value, authorInput.value, pagesInput.value]
+        let complete = true
+
+        const checkRequired = (value) => {
+            if(value === ""){
+                return false
+            }
+        }
+
+        for(var i = 0; i < 3; i++){
+            if(checkRequired(requiredArray[i]) == false ) { complete = false }
+        }
+        
+        if(complete) { 
+            submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked)
+            bookForm.innerHTML = ""
+            CreateBook(bookForm, titleInput.value, authorInput.value, pagesInput.value, readedInput.checked)
+        }
+    }
 
     readedInput.value = "read"
     submitInput.value = "Submit"
@@ -61,7 +95,7 @@ const CreateBookConfig = (card) =>{
 //#endregion
 
 //#region CreateBook
-const CreateBook = (book) => {
+const CreateBook = (card, title, author, pages, readed) => {
     const contentDiv =  document.createElement("div")
     const infoDiv = document.createElement("div")
     const titleH1 = document.createElement("h1")
@@ -75,12 +109,27 @@ const CreateBook = (book) => {
     readedBtn.className = "book-readed"
     removeBtn.className = "book-remove"
 
+    titleH1.textContent = title
+    authorH4.textContent = author
+    pagesH5.textContent = `pages: ${pages}`
+    removeBtn.textContent = "remove"
+    readedBtn.checked = readed
+
+    if(readedBtn.checked) { 
+        readedBtn.textContent = "finished" 
+        readedBtn.className = "book-readed"
+    } else { 
+        readedBtn.textContent = "not finished"
+        readedBtn.className = "book-notreaded"
+    }
+
     readedBtn.type = "button"
     removeBtn.type = "button"
 
     infoDiv.append(titleH1, authorH4, pagesH5)
     buttonDiv.append(readedBtn, removeBtn)
     contentDiv.append(infoDiv, buttonDiv)
+    card.append(contentDiv)
 } 
 //#endregion
 
@@ -94,7 +143,9 @@ const CreateBookCard = () => {
 }
 
 CreateBookCard()
-const library = new Library()
+
+/*
 const newBook = new Book("Percy jackson", "Rick Riordan", 250, false)
 library.addBook(newBook)
 console.log(library.bookList)
+*/
