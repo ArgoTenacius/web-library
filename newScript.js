@@ -1,4 +1,5 @@
 const book_area = document.getElementById("book_area")
+const add_button = document.getElementById("add_button")
 
 class Book {
     constructor(title, author, page, readed){
@@ -143,6 +144,7 @@ const CreateBookCard = () => {
 }
 
 CreateBookCard()
+add_button.onclick = CreateBookCard
 
 /*
 const newBook = new Book("Percy jackson", "Rick Riordan", 250, false)
