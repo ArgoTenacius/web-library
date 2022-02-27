@@ -60,6 +60,30 @@ const CreateBookConfig = (card) =>{
 }
 //#endregion
 
+//#region CreateBook
+const CreateBook = (book) => {
+    const contentDiv =  document.createElement("div")
+    const infoDiv = document.createElement("div")
+    const titleH1 = document.createElement("h1")
+    const authorH4 = document.createElement("h4")
+    const pagesH5 = document.createElement("h5")
+    const buttonDiv = document.createElement("div")
+    const readedBtn = document.createElement("button")
+    const removeBtn = document.createElement("button")
+
+    contentDiv.className = "book-content"
+    readedBtn.className = "book-readed"
+    removeBtn.className = "book-remove"
+
+    readedBtn.type = "button"
+    removeBtn.type = "button"
+
+    infoDiv.append(titleH1, authorH4, pagesH5)
+    buttonDiv.append(readedBtn, removeBtn)
+    contentDiv.append(infoDiv, buttonDiv)
+} 
+//#endregion
+
 const CreateBookCard = () => {
     const bookCard = document.createElement("section")
     bookCard.className = "book-card box-shadow"
