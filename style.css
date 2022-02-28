@@ -14,10 +14,13 @@
     --button-color:  #dadada;
 }
 
+html{
+    min-height: 100%;
+}
+
 body{
     background-color: var(--library-color);
     overflow-x: hidden;
-    height: 100vh;
 }
 
 input, button{
@@ -55,22 +58,12 @@ header{
 
 /*#endregion*/
 
-/*#region main*/
-main{
-    aspect-ratio: 1/1;
-    display: grid; 
-    grid-auto-flow: row dense; 
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr; 
-    gap: 0px 0px; 
-    grid-template-areas: 
-      ". . . ."
-      ". . . ."
-      ". . . ."; 
-    align-content: center; 
-    justify-items: center; 
-    align-items: center; 
-    width: 100vw;
+
+#book_area{
+    display: grid;
+    grid-template:  repeat(2, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
+    justify-items: center;
+    align-items: center;
 }
 
 .box-shadow{
@@ -160,40 +153,14 @@ main{
 
 /*#endregion*/
 
-@media screen and (max-width: 950px) {
-    main{
-        aspect-ratio: 1/1;
-        display: grid; 
-        grid-auto-flow: row dense; 
-        grid-template-columns: 1fr 1fr 1fr ; 
-        grid-template-rows: 1fr 1fr 1fr; 
-        gap: 0px 0px; 
-        grid-template-areas: 
-          ". . ."
-          ". . ."
-          ". . ."; 
-        align-content: center; 
-        justify-items: center; 
-        align-items: center; 
-        width: 100vw;
+@media screen and (max-width: 1200px) {
+    #book_area{
+        grid-template:  repeat(3, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
     }
 }
 
-@media screen and (max-width: 750px) {
-    main{
-        aspect-ratio: 1/1;
-        display: grid; 
-        grid-auto-flow: row dense; 
-        grid-template-columns: 1fr 1fr; 
-        grid-template-rows: 1fr 1fr; 
-        gap: 0px 0px; 
-        grid-template-areas: 
-          ". ."
-          ". ."
-          ". ."; 
-        align-content: center; 
-        justify-items: center; 
-        align-items: center; 
-        width: 100vw;
+@media screen and (max-width: 900px) {
+    #book_area{
+        grid-template:  repeat(4, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
     }
 }

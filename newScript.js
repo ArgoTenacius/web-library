@@ -1,5 +1,4 @@
 const book_area = document.getElementById("book_area")
-const add_button = document.getElementById("add_button")
 
 class Book {
     constructor(title, author, page, readed){
@@ -18,19 +17,23 @@ class Library{
     addBook(newBook) {
         this.bookList.push(newBook)
     }
+
+    removeBook(_title) {
+        for (let i = 0; i < this.bookList.length; i++){
+            if(this.bookList[i].title == _title){
+                
+                this.bookList.splice(i)
+                break
+            }
+        }
+    }
 }
+
 const library = new Library()
 
-
-const submitBook = (title, author, pages, readed) => {
-    const newBook = new Book(title, author, pages, readed)
-    library.addBook(newBook)
-    console.log(library.bookList)
-}
-
-
 //#region CreateBookConfig
-const CreateBookConfig = (card) =>{
+const CreateBookConfig = () =>{
+    const card = document.createElement("section")
     const bookForm = document.createElement("form")
     const inputDiv = document.createElement("div")
     const submitDiv = document.createElement("div")
@@ -43,6 +46,7 @@ const CreateBookConfig = (card) =>{
 
     bookForm.className = "book-config"
     submitDiv.className = "book-submit"
+    card.className = "book-card box-shadow"
     
     titleInput.type = "text"
     authorInput.type = "text"
@@ -53,50 +57,33 @@ const CreateBookConfig = (card) =>{
     pagesInput.required = true
     
     readedInput.type = "checkbox"
-    submitInput.type = "submit"
-
-    submitInput.onclick = () => {
-        const requiredArray = [titleInput.value, authorInput.value, pagesInput.value]
-        let complete = true
-
-        const checkRequired = (value) => {
-            if(value === ""){
-                return false
-            }
-        }
-
-        for(var i = 0; i < 3; i++){
-            if(checkRequired(requiredArray[i]) == false ) { complete = false }
-        }
-        
-        if(complete) { 
-            submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked)
-            bookForm.innerHTML = ""
-            CreateBook(bookForm, titleInput.value, authorInput.value, pagesInput.value, readedInput.checked)
-        }
-    }
+    submitInput.type = "button"
 
     readedInput.value = "read"
     submitInput.value = "Submit"
 
     readedLabel.for = "read"
-
+    
     readedLabel.textContent = "Already readed it ?"
 
     titleInput.placeholder = "title"
     authorInput.placeholder = "author"
     pagesInput.placeholder = "pages"
+    
+    submitInput.onclick = () => { submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked, card) }
 
     readedLabel.append(readedInput)
     inputDiv.append(titleInput, authorInput, pagesInput, readedLabel)
     submitDiv.append(submitInput)
     bookForm.append(inputDiv, submitDiv)
     card.append(bookForm)
+    book_area.append(card)
 }
 //#endregion
 
 //#region CreateBook
-const CreateBook = (card, title, author, pages, readed) => {
+const CreateBook = (book) => {
+    const card = document.createElement("section")
     const contentDiv =  document.createElement("div")
     const infoDiv = document.createElement("div")
     const titleH1 = document.createElement("h1")
@@ -106,15 +93,17 @@ const CreateBook = (card, title, author, pages, readed) => {
     const readedBtn = document.createElement("button")
     const removeBtn = document.createElement("button")
 
+    card.className = "book-card box-shadow"
     contentDiv.className = "book-content"
     readedBtn.className = "book-readed"
     removeBtn.className = "book-remove"
 
-    titleH1.textContent = title
-    authorH4.textContent = author
-    pagesH5.textContent = `pages: ${pages}`
+    titleH1.textContent = book.title
+    authorH4.textContent = book.author
+    pagesH5.textContent = `pages: ${book.page}`
     removeBtn.textContent = "remove"
-    readedBtn.checked = readed
+
+    readedBtn.checked = book.checked
 
     if(readedBtn.checked) { 
         readedBtn.textContent = "finished" 
@@ -126,28 +115,26 @@ const CreateBook = (card, title, author, pages, readed) => {
 
     readedBtn.type = "button"
     removeBtn.type = "button"
+    
+    removeBtn.onclick = (e) => { 
+        console.log(e)
+        library.removeBook(titleH1.textContent)
+        book_area.removeChild(card)
+        
+    }
 
     infoDiv.append(titleH1, authorH4, pagesH5)
     buttonDiv.append(readedBtn, removeBtn)
     contentDiv.append(infoDiv, buttonDiv)
     card.append(contentDiv)
+    book_area.append(card)
 } 
 //#endregion
 
-const CreateBookCard = () => {
-    const bookCard = document.createElement("section")
-    bookCard.className = "book-card box-shadow"
+CreateBookConfig()
 
-    CreateBookConfig(bookCard)
-
-    book_area.append(bookCard)
+const submitBook = (title, author, pages, readed, card) => {
+    const newBook = new Book(title, author, pages, readed)
+    library.addBook(newBook)
+    card.parentNode.firstChild.innerHTML = CreateBook(newBook)
 }
-
-CreateBookCard()
-add_button.onclick = CreateBookCard
-
-/*
-const newBook = new Book("Percy jackson", "Rick Riordan", 250, false)
-library.addBook(newBook)
-console.log(library.bookList)
-*/
