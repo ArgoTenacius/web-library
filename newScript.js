@@ -1,4 +1,5 @@
 const book_area = document.getElementById("book_area")
+const add_button = document.getElementById("add_button")
 
 class Book {
     constructor(title, author, page, readed){
@@ -173,7 +174,7 @@ const CreateBook = (book) => {
     readedBtn.type = "button"
     removeBtn.type = "button"
     
-    removeBtn.onclick = (e) => { 
+    removeBtn.onclick = () => { 
         library.removeBook(titleH1.textContent)
         book_area.removeChild(card)
     }
@@ -186,10 +187,11 @@ const CreateBook = (book) => {
 } 
 //#endregion
 
-CreateBookConfig()
+add_button.onclick = () => { CreateBookConfig() }
 
 const submitBook = (title, author, pages, readed, card) => {
     const newBook = new Book(title, author, pages, readed)
     library.addBook(newBook)
     card.parentNode.firstChild.innerHTML = CreateBook(newBook)
+    book_area.removeChild(card)
 }
