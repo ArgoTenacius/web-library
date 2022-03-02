@@ -187,7 +187,16 @@ const CreateBook = (book) => {
 } 
 //#endregion
 
-add_button.onclick = () => { CreateBookConfig(); console.log(library.bookList)}
+add_button.onclick = () => {
+    if(book_area.childElementCount < 8){
+            CreateBookConfig() 
+    }else{
+        add_button.style.animation="shake-horizontal 0.8s"
+        add_button.addEventListener("animationend", () => {
+            add_button.style.animation = undefined
+        })
+    }
+}
 
 const submitBook = (title, author, pages, readed, card) => {
     const newBook = new Book(title, author, pages, readed)

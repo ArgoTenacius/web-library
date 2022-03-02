@@ -5,9 +5,9 @@
 }
 
 :root{
-    --header-color: rgb(252, 208, 215);
+    --header-color: white;
     --library-color: #f1f1f1;
-    --scrollbar-color: black;
+    --scrollbar-color: rgb(0, 0, 0);
     --shadow-color: #00000054;
     --green-button: #57ff57d0;
     --red-button: #ff5757d0;
@@ -21,6 +21,7 @@ html{
 body{
     background-color: var(--library-color);
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 input, button{
@@ -29,7 +30,7 @@ input, button{
 
 /*#region scrollbar*/
 ::-webkit-scrollbar{
-    width: 5px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -45,6 +46,9 @@ input, button{
 header{
     height: fit-content;
     display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -115,6 +119,10 @@ header{
     width: 100%;
 }
 
+.book-submit input:hover{
+    background-color: #3cfd3cd0;
+}
+
 .red-placeholder::placeholder{
     color: red;
 }
@@ -158,6 +166,9 @@ header{
 /*#endregion*/
 
 @media screen and (max-width: 1200px) {
+    body {
+        overflow-y: visible;
+    }
     #book_area{
         grid-template:  repeat(3, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
     }
@@ -166,5 +177,11 @@ header{
 @media screen and (max-width: 900px) {
     #book_area{
         grid-template:  repeat(4, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media screen and (max-width: 605px) {
+    #book_area{
+        grid-template:  repeat(8, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
     }
 }
