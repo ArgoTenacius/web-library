@@ -22,7 +22,7 @@ class Library{
     removeBook(_title) {
         for (let i = 0; i < this.bookList.length; i++){
             if(this.bookList[i].title == _title){
-                this.bookList.splice(i)
+                this.bookList.splice(i, 1)
                 break
             }
         }
@@ -187,7 +187,7 @@ const CreateBook = (book) => {
 } 
 //#endregion
 
-add_button.onclick = () => { CreateBookConfig() }
+add_button.onclick = () => { CreateBookConfig(); console.log(library.bookList)}
 
 const submitBook = (title, author, pages, readed, card) => {
     const newBook = new Book(title, author, pages, readed)
