@@ -114,6 +114,10 @@ header{
     padding-block: 3px;
     width: 100%;
 }
+
+.red-placeholder::placeholder{
+    color: red;
+}
 /*#endregion*/
 
 /*#region book display*/

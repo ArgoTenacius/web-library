@@ -21,9 +21,16 @@ class Library{
     removeBook(_title) {
         for (let i = 0; i < this.bookList.length; i++){
             if(this.bookList[i].title == _title){
-                
                 this.bookList.splice(i)
                 break
+            }
+        }
+    }
+
+    getBook(_title){
+        for (let i = 0; i < this.bookList.length; i++){
+            if(this.bookList[i].title == _title){
+                return this.bookList[i].title
             }
         }
     }
@@ -70,7 +77,17 @@ const CreateBookConfig = () =>{
     authorInput.placeholder = "author"
     pagesInput.placeholder = "pages"
     
-    submitInput.onclick = () => { submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked, card) }
+    submitInput.onclick = () => { 
+        if(titleInput.value !== library.getBook(titleInput.value)){
+            titleInput.placeholder = "title"
+            titleInput.className = "book-submit"
+            submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked, card) 
+        }else{
+            titleInput.value = ""
+            titleInput.placeholder = "Book already exist"
+            titleInput.className = "book-submit red-placeholder"
+        }
+    }
 
     readedLabel.append(readedInput)
     inputDiv.append(titleInput, authorInput, pagesInput, readedLabel)
@@ -117,10 +134,9 @@ const CreateBook = (book) => {
     removeBtn.type = "button"
     
     removeBtn.onclick = (e) => { 
-        console.log(e)
         library.removeBook(titleH1.textContent)
         book_area.removeChild(card)
-        
+        console.log(library.bookList)
     }
 
     infoDiv.append(titleH1, authorH4, pagesH5)
