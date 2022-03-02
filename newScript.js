@@ -71,7 +71,11 @@ const CreateBookConfig = () =>{
     titleInput.required = true
     authorInput.required = true
     pagesInput.required = true
-    
+
+    titleInput.maxLength = 18
+    authorInput.maxLength = 18
+    pagesInput.maxLength = 18
+
     readedInput.type = "checkbox"
     submitInput.type = "submit"
 
@@ -91,16 +95,14 @@ const CreateBookConfig = () =>{
         for (let i = 0; i < requiredInput.length; i++){
             if(requiredInput[i].value == ""){
                 return false
-            }else if(requiredInput[requiredInput.length - 1] !== ""){
-                return true
             }
         }
     }
     
     submitInput.onclick = (e) => { 
-        e.preventDefault()
         const complete = checkInputs()
-        if(complete){
+        if(complete !== false){
+            e.preventDefault()
             if(titleInput.value !== library.getBookTitle(titleInput.value)){
                 titleInput.placeholder = "title"
                 titleInput.className = "book-submit"
@@ -144,7 +146,7 @@ const CreateBook = (book) => {
     pagesH5.textContent = `pages: ${book.page}`
     removeBtn.textContent = "remove"
 
-    readedBtn.checked = book.checked
+    readedBtn.checked = book.readed
 
     const readedBtnUpdate = () => {
         if(readedBtn.checked) { 
