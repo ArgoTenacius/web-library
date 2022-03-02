@@ -72,7 +72,7 @@ const CreateBookConfig = () =>{
     pagesInput.required = true
     
     readedInput.type = "checkbox"
-    submitInput.type = "button"
+    submitInput.type = "submit"
 
     readedInput.value = "read"
     submitInput.value = "Submit"
@@ -84,16 +84,31 @@ const CreateBookConfig = () =>{
     titleInput.placeholder = "title"
     authorInput.placeholder = "author"
     pagesInput.placeholder = "pages"
+
+    const checkInputs = () => {
+        const requiredInput = [titleInput, authorInput, pagesInput]
+        for (let i = 0; i < requiredInput.length; i++){
+            if(requiredInput[i].value == ""){
+                return false
+            }else if(requiredInput[requiredInput.length - 1] !== ""){
+                return true
+            }
+        }
+    }
     
-    submitInput.onclick = () => { 
-        if(titleInput.value !== library.getBookTitle(titleInput.value)){
-            titleInput.placeholder = "title"
-            titleInput.className = "book-submit"
-            submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked, card) 
-        }else{
-            titleInput.value = ""
-            titleInput.placeholder = "Book already exist"
-            titleInput.className = "book-submit red-placeholder"
+    submitInput.onclick = (e) => { 
+        e.preventDefault()
+        const complete = checkInputs()
+        if(complete){
+            if(titleInput.value !== library.getBookTitle(titleInput.value)){
+                titleInput.placeholder = "title"
+                titleInput.className = "book-submit"
+                submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked, card) 
+            }else{
+                titleInput.value = ""
+                titleInput.placeholder = "Book already exist"
+                titleInput.className = "book-submit red-placeholder"
+            }
         }
     }
 
