@@ -27,12 +27,20 @@ class Library{
         }
     }
 
-    getBook(_title){
+    getBookTitle(_title){
         for (let i = 0; i < this.bookList.length; i++){
             if(this.bookList[i].title == _title){
                 return this.bookList[i].title
             }
         }
+    }
+
+    getBookID(_title){
+        for (let i = 0; i < this.bookList.length; i++){
+            if(this.bookList[i].title == _title){
+                return this.bookList[i]
+            }
+        }    
     }
 }
 
@@ -78,7 +86,7 @@ const CreateBookConfig = () =>{
     pagesInput.placeholder = "pages"
     
     submitInput.onclick = () => { 
-        if(titleInput.value !== library.getBook(titleInput.value)){
+        if(titleInput.value !== library.getBookTitle(titleInput.value)){
             titleInput.placeholder = "title"
             titleInput.className = "book-submit"
             submitBook(titleInput.value, authorInput.value, pagesInput.value, readedInput.checked, card) 
@@ -122,12 +130,29 @@ const CreateBook = (book) => {
 
     readedBtn.checked = book.checked
 
-    if(readedBtn.checked) { 
-        readedBtn.textContent = "finished" 
-        readedBtn.className = "book-readed"
-    } else { 
-        readedBtn.textContent = "not finished"
-        readedBtn.className = "book-notreaded"
+    const readedBtnUpdate = () => {
+        if(readedBtn.checked) { 
+            readedBtn.textContent = "finished" 
+            readedBtn.className = "book-readed"
+        } else { 
+            readedBtn.textContent = "not finished"
+            readedBtn.className = "book-notreaded"
+        }
+    }
+
+    readedBtnUpdate()
+
+    readedBtn.onclick = () => {
+        if(readedBtn.className == "book-readed"){
+            readedBtn.checked = false
+        }else{
+            readedBtn.checked = true
+        }
+        readedBtnUpdate()
+
+        const bookID = library.getBookID(titleH1.textContent)
+        bookID.readed = readedBtn.checked
+        
     }
 
     readedBtn.type = "button"
@@ -136,7 +161,6 @@ const CreateBook = (book) => {
     removeBtn.onclick = (e) => { 
         library.removeBook(titleH1.textContent)
         book_area.removeChild(card)
-        console.log(library.bookList)
     }
 
     infoDiv.append(titleH1, authorH4, pagesH5)
